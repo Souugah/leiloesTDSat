@@ -38,7 +38,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnVendas" min="-2" pref="168" max="-2" attributes="0"/>
+                          <Component id="btnConsultarVendas" min="-2" pref="168" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jSeparator1" alignment="0" min="-2" pref="440" max="-2" attributes="0"/>
                   </Group>
@@ -69,7 +69,7 @@
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace pref="67" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnVendas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnConsultarVendas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -85,7 +85,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="listaProdutos">
+        <Component class="javax.swing.JTable" name="tblProdutos">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -150,6 +150,10 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="id_produto_venda">
+          <Events>
+            <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="id_produto_vendaCaretUpdate"/>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="id_produto_vendaAncestorAdded"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -163,12 +167,12 @@
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
-    <Component class="javax.swing.JButton" name="btnVendas">
+    <Component class="javax.swing.JButton" name="btnConsultarVendas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar Vendas"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendasActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarVendasActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnVoltar">

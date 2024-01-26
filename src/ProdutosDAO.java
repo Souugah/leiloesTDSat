@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
     
 
@@ -54,7 +55,7 @@ public class ProdutosDAO {
         
     
     
-    public ArrayList<ProdutosDTO> listarProdutos(){
+    public ArrayList<ProdutosDTO> getProdutos(){
         ArrayList<ProdutosDTO> listagem = new ArrayList<>();
        
        String sql = "SELECT * FROM produtos"; 
@@ -95,10 +96,36 @@ public class ProdutosDAO {
         JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Não foi possivel vender o  produto: " + ex.getMessage());
-    } {
-            }
+    
 }                
     }
+    public List<ProdutosDTO> getProdutosVendidos() {
+                String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
+                
+                try {
+                    PreparedStatement stmt = this.conn.prepareStatement(sql);
+                    ResultSet rs = stmt.executeQuery();            
+                    
+                    List<ProdutosDTO> listaProdutosVendidos = new ArrayList<>();
+                    
+                    while (rs.next()) { //.next retorna verdadeiro caso exista uma próxima posição dentro do array
+                        ProdutosDTO produtosDTO = new ProdutosDTO();
+                        
+                        produtosDTO.setId(rs.getInt("id"));
+                        produtosDTO.setNome(rs.getString("nome"));
+                        produtosDTO.setValor(rs.getInt("valor"));
+                        produtosDTO.setStatus(rs.getString("status"));
+                        
+                        listaProdutosVendidos.add(produtosDTO);    
+                    }
+                    return listaProdutosVendidos;
+                    
+                    //Se o método entrar no "Catch" quer dizer que não encontrou nenhuma empresa, então damos um "return null"
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+}
     
 
     
